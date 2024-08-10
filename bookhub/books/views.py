@@ -6,7 +6,7 @@ from .forms import CustomUserCreationForm, CustomAuthenticationForm,Recommendati
 from .models import Recommendation
 from .api import GoogleBooksAPI
 
-api_key = "AIzaSyC98sbEUc2xfNMN9H-xboc8MAa3q6ls3BY"
+api_key = "Add Google API Key"
 google_books_api = GoogleBooksAPI(api_key)
 
 def register_view(request):
