@@ -1,0 +1,171 @@
+<!DOCTYPE html>
+<style>
+    body {
+        font-family: 'Arial', sans-serif;
+        margin: 0;
+        padding: 0;
+        background: linear-gradient(135deg, #f2f2f2, #e6e6e6);
+        color: #333;
+    }
+
+    header {
+        background: #ff6f61;
+        color: white;
+        padding: 20px;
+        text-align: center;
+        box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+    }
+
+    h1 {
+        margin: 0;
+        font-size: 2.5rem;
+    }
+
+    main {
+        padding: 20px;
+        max-width: 1200px;
+        margin: auto;
+    }
+
+    .recommendation-form {
+        background: white;
+        border-radius: 12px;
+        box-shadow: 0 8px 16px rgba(0, 0, 0, 0.2);
+        padding: 20px;
+        max-width: 600px;
+        margin: auto;
+        transition: transform 0.3s, box-shadow 0.3s;
+    }
+
+    .recommendation-form:hover {
+        transform: translateY(-5px);
+        box-shadow: 0 12px 24px rgba(0, 0, 0, 0.3);
+    }
+
+    .form-group {
+        margin-bottom: 15px;
+    }
+
+    label {
+        display: block;
+        margin-bottom: 5px;
+        font-weight: bold;
+    }
+
+    input[type="text"],
+    input[type="number"],
+    input[type="date"],
+    textarea {
+        width: 100%;
+        padding: 12px;
+        border: 1px solid #ddd;
+        border-radius: 8px;
+        box-sizing: border-box;
+        transition: border-color 0.3s;
+    }
+
+    input[type="text"]:focus,
+    input[type="number"]:focus,
+    input[type="date"]:focus,
+    textarea:focus {
+        border-color: #ff6f61;
+        outline: none;
+    }
+
+    textarea {
+        height: 120px;
+        resize: vertical;
+    }
+
+    .submit-button {
+        background: #ff6f61;
+        color: white;
+        border: none;
+        padding: 15px 20px;
+        border-radius: 8px;
+        cursor: pointer;
+        font-size: 16px;
+        transition: background 0.3s, transform 0.3s;
+    }
+
+    .submit-button:hover {
+        background: #ff4c43;
+        transform: scale(1.05);
+    }
+
+    .errorlist {
+        color: #d9534f;
+        margin: 10px 0;
+        padding: 10px;
+        background: #f9d6d5;
+        border: 1px solid #d9534f;
+        border-radius: 5px;
+    }
+
+    .errorlist ul {
+        list-style: none;
+        padding: 0;
+        margin: 0;
+    }
+
+    .errorlist li {
+        margin-bottom: 5px;
+    }
+</style>
+<html>
+<head>
+    <title>Submit Recommendation</title>
+</head>
+<body>
+    <header>
+        <h1>Submit a Book Recommendation</h1>
+    </header>
+    <main>
+        {% if user.is_authenticated %}
+            <form action="{% url 'submit_recommendation' %}" method="post" class="recommendation-form">
+                {% csrf_token %}
+                {% if form.errors %}
+                    <div class="errorlist">
+                        <strong>There were errors with your submission:</strong>
+                        <ul>
+                            {% for field in form %}
+                                {% if field.errors %}
+                                    <li>{{ field.label }}: {{ field.errors }}</li>
+                                {% endif %}
+                            {% endfor %}
+                            {% if form.non_field_errors %}
+                                {% for error in form.non_field_errors %}
+                                    <li>{{ error }}</li>
+                                {% endfor %}
+                            {% endif %}
+                        </ul>
+                    </div>
+                {% endif %}
+                <div class="form-group">
+                    <label for="title">Book Title:</label>
+                    {{ form.title }}
+                </div>
+                <div class="form-group">
+                    <label for="author">Author:</label>
+                    {{ form.author }}
+                </div>
+                <div class="form-group">
+                    <label for="description">Description:</label>
+                    {{ form.description }}
+                </div>
+                <div class="form-group">
+                    <label for="rating">Rating:</label>
+                    {{ form.rating }}
+                </div>
+                <div class="form-group">
+                    <label for="genre">Genre:</label>
+                    {{ form.genre }}
+                </div>
+                <button type="submit" class="submit-button">Submit Recommendation</button>
+            </form>
+        {% else %}
+            <p>You must be logged in to submit a recommendation. <a href="{% url 'login' %}">Login here</a>.</p>
+        {% endif %}
+    </main>
+</body>
+</html>

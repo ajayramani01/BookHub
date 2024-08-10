@@ -1,0 +1,95 @@
+<!DOCTYPE html>
+<style>
+    body {
+        font-family: 'Roboto', sans-serif;
+        background: linear-gradient(to right, #00c6ff, #0072ff);
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        height: 100vh;
+        margin: 0;
+    }
+
+    .container {
+        background: #ffffff;
+        border-radius: 8px;
+        box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+        max-width: 400px;
+        width: 100%;
+        padding: 30px;
+        text-align: center;
+    }
+
+    h2 {
+        color: #333;
+        margin-bottom: 20px;
+    }
+
+    form {
+        display: flex;
+        flex-direction: column;
+        gap: 10px;
+    }
+
+    form label {
+        margin-bottom: 5px;
+        color: #555;
+    }
+
+    form input[type="text"],
+    form input[type="email"],
+    form input[type="password"] {
+        padding: 12px;
+        margin-bottom: 15px;
+        border: 1px solid #ddd;
+        border-radius: 5px;
+        font-size: 16px;
+    }
+
+    form input[type="submit"] {
+        padding: 12px;
+        background-color: #007bff;
+        border: none;
+        border-radius: 5px;
+        color: white;
+        font-size: 16px;
+        cursor: pointer;
+        transition: background-color 0.3s ease;
+    }
+
+    form input[type="submit"]:hover {
+        background-color: #0056b3;
+    }
+    
+    a {
+        color: #007bff;
+        text-decoration: none;
+        font-weight: bold;
+    }
+
+    a:hover {
+        text-decoration: underline;
+    }
+    ul{
+        display: none;
+    }
+    .helptext{
+        display: none;
+    }
+</style>
+<html>
+<head>
+    <title>Register</title>
+</head>
+<body>
+    <div class="container">
+        <h2>Register</h2>
+        <form method="post">
+            {% csrf_token %}
+            {{ form.as_p }}
+            <input type="submit" value="Register">
+        </form>
+        <p><a href="{% url 'login' %}">Already have an account? Login here.</a></p>
+    </div>
+</body>
+</html>

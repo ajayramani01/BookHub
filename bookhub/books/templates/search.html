@@ -1,0 +1,130 @@
+<!DOCTYPE html>
+<style>
+    body {
+        font-family: Arial, sans-serif;
+        background-color: #f4f4f9;
+        color: #333;
+        margin: 0;
+        padding: 0;
+        text-align: center;
+    }
+    .container {
+        width: 80%;
+        margin: 0 auto;
+        padding: 20px;
+        background: #fff;
+        box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+        border-radius: 8px;
+    }
+    h1 {
+        color: #333;
+    }
+    form {
+        margin-bottom: 20px;
+    }
+    input[type="text"] {
+        padding: 10px;
+        font-size: 16px;
+        border: 1px solid #ddd;
+        border-radius: 4px;
+        width: 70%;
+        max-width: 600px;
+    }
+    button {
+        padding: 10px 20px;
+        font-size: 16px;
+        color: #fff;
+        background-color: #007bff;
+        border: none;
+        border-radius: 4px;
+        cursor: pointer;
+    }
+    button:hover {
+        background-color: #0056b3;
+    }
+    .book-item {
+        display: flex;
+        align-items: flex-start;
+        border-bottom: 1px solid #ddd;
+        padding: 10px;
+        margin-bottom: 10px;
+        background: #f9f9f9;
+        border-radius: 8px;
+    }
+    .book-image {
+        flex-shrink: 0;
+        width: 120px;
+        height: 180px;
+        margin-right: 20px;
+        overflow: hidden;
+    }
+    .book-image img {
+        width: 100%;
+        height: auto;
+    }
+    .book-info {
+        flex-grow: 1;
+        text-align: left;
+    }
+    .book-info h2 {
+        margin: 0;
+        font-size: 18px;
+        color: #333;
+    }
+    .book-info p {
+        margin: 5px 0;
+    }
+    .book-info .author {
+        font-style: italic;
+    }
+    .book-info .rating {
+        font-weight: bold;
+        color: #ff9800;
+    }
+    .no-results {
+        color: #999;
+        font-size: 18px;
+    }
+</style>
+<html>
+<head>
+    <title>Book Search Results</title>
+</head>
+<body>
+    <div class="container">
+        <h1>Book Search</h1>
+        <form method="get" action="{% url 'search' %}">
+            <input type="text" name="q" placeholder="Search for books" value="{{ request.GET.q }}">
+            <button type="submit">Search</button>
+        </form>
+
+        {% if books and books %}
+            <div>
+                {% for book in books %}
+                    <div class="book-item">
+                        <div class="book-image">
+                            {% if book.image %}
+                                <img src="{{ book.image }}" alt="Cover Image">
+                            {% endif %}
+                        </div>
+                        <div class="book-info">
+                            <h2>{{ book.title }}</h2>
+                            {% if book.author %}
+                                <p class="author"><strong>Author:</strong> {{ book.author }}</p>
+                            {% endif %}
+                            {% if book.description %}
+                                <p>{{ book.description }}</p>
+                            {% endif %}
+                            {% if book.rating %}
+                                <p class="rating"><strong>Author:</strong> {{ book.rating }} / 5</p>
+                            {% endif %}
+                        </div>
+                    </div>
+                {% endfor %}
+            </div>
+        {% else %}
+            <p class="no-results">No results found.</p>
+        {% endif %}
+    </div>
+</body>
+</html>

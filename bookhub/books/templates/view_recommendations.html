@@ -1,0 +1,84 @@
+<!DOCTYPE html>
+<style>
+    body {
+        font-family: 'Arial', sans-serif;
+        margin: 0;
+        padding: 0;
+        background: linear-gradient(135deg, #f2f2f2, #e6e6e6);
+        color: #333;
+    }
+
+    header {
+        background: #ff6f61;
+        color: white;
+        padding: 20px;
+        text-align: center;
+        box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+    }
+
+    h1 {
+        margin: 0;
+        font-size: 2.5rem;
+    }
+    main {
+        padding: 20px;
+        max-width: 1200px;
+        margin: auto;
+    }
+    
+    .recommendations {
+        display: flex;
+        flex-wrap: wrap;
+        gap: 20px;
+        justify-content: center;
+    }
+
+    .recommendation-card {
+        background: white;
+        border-radius: 12px;
+        box-shadow: 0 8px 16px rgba(0, 0, 0, 0.2);
+        padding: 20px;
+        width: 300px;
+        transition: transform 0.3s, box-shadow 0.3s;
+    }
+
+    .recommendation-card:hover {
+        transform: translateY(-10px);
+        box-shadow: 0 12px 24px rgba(0, 0, 0, 0.3);
+    }
+
+    .recommendation-title {
+        color: #ff6f61;
+        font-size: 1.5rem;
+        margin-bottom: 10px;
+    }
+
+    p {
+        margin: 5px 0;
+    }
+</style>
+<html>
+<head>
+    <title>Book Recommendations</title>
+</head>
+<body>
+    <header>
+        <h1>Book Recommendations</h1>
+    </header>
+    <main>
+        <div class="recommendations">
+            {% for recommendation in recommendations %}
+            <div class="recommendation-card">
+                <h2 class="recommendation-title">{{ recommendation.title }}</h2>
+                <p><strong>Author:</strong> {{ recommendation.author }}</p>
+                <p><strong>Description:</strong> {{ recommendation.description }}</p>
+                <p><strong>Rating:</strong> {{ recommendation.rating }}</p>
+                <p><strong>Genre:</strong> {{ recommendation.genre }}</p>
+                <p><strong>Publication Date:</strong> {{ recommendation.publication_date }}</p>
+                <p><strong>Recommended by:</strong> {{ recommendation.user }}</p>
+            </div>
+            {% endfor %}
+        </div>
+    </main>
+</body>
+</html>

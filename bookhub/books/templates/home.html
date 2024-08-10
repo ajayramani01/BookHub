@@ -1,0 +1,69 @@
+<!DOCTYPE html>
+<style>
+    body {
+        font-family: 'Arial', sans-serif;
+        background: linear-gradient(135deg, #f4f4f9, #e0e0e0);
+        color: #333;
+        text-align: center;
+        padding: 50px;
+        margin: 0;
+    }
+    h1 {
+        margin-bottom: 40px;
+        font-size: 2.5rem;
+        color: #007bff;
+    }
+    .button-container {
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        gap: 20px;
+    }
+    .button-container a {
+        display: inline-block;
+        padding: 15px 30px;
+        font-size: 18px;
+        color: #fff;
+        background-color: #007bff;
+        text-decoration: none;
+        border-radius: 8px;
+        box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+        transition: background-color 0.3s, transform 0.3s;
+    }
+    .button-container a:hover {
+        background-color: #0056b3;
+        transform: translateY(-3px);
+    }
+    .button-container a.logout {
+        background-color: #dc3545;
+    }
+    .button-container a.logout:hover {
+        background-color: #c82333;
+    }
+    .button-container a.view {
+        background-color: #28a745;
+    }
+    .button-container a.view:hover {
+        background-color: #218838;
+    }
+    .button-container a.submit {
+        background-color: #17a2b8;
+    }
+    .button-container a.submit:hover {
+        background-color: #138496;
+    }
+</style>
+<html>
+<head>
+    <title>Book Hub Home</title>
+</head>
+<body>
+    <h1>Welcome to Book Hub</h1>
+    <div class="button-container">
+        <a href="{% url 'search' %}">Search Books</a>
+        <a href="{% url 'view_recommendations' %}" class="view">View Recommendations</a>
+        <a href="{% url 'submit_recommendation' %}" class="submit">Submit Recommendation</a>
+        <a href="{% url 'logout' %}" class="logout">Logout</a>
+    </div>
+</body>
+</html>

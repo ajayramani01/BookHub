@@ -1,0 +1,132 @@
+<!DOCTYPE html>
+<style>
+    body {
+        font-family: 'Arial', sans-serif;
+        background: linear-gradient(135deg, #f4f4f9, #e0e0e0);
+        color: #333;
+        text-align: center;
+        margin: 0;
+        padding: 0;
+    }
+
+    header {
+        background: #007bff;
+        color: #fff;
+        padding: 20px;
+    }
+
+    header h1 {
+        margin: 0;
+        font-size: 2.5rem;
+    }
+
+    .container {
+        padding: 50px;
+    }
+
+    .hero {
+        background: #fff;
+        padding: 50px 20px;
+        border-radius: 10px;
+        box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+        margin-bottom: 40px;
+    }
+
+    .hero h2 {
+        margin-top: 0;
+        color: #007bff;
+        font-size: 2rem;
+    }
+
+    .button-container {
+        display: flex;
+        flex-wrap: wrap;
+        justify-content: center;
+        gap: 20px;
+    }
+
+    .button-container a {
+        display: inline-block;
+        padding: 15px 30px;
+        font-size: 18px;
+        color: #fff;
+        background-color: #007bff;
+        text-decoration: none;
+        border-radius: 8px;
+        box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+        transition: background-color 0.3s, transform 0.3s;
+    }
+
+    .button-container a:hover {
+        background-color: #0056b3;
+        transform: translateY(-3px);
+    }
+
+    .button-container a.login {
+        background-color: #28a745;
+    }
+
+    .button-container a.login:hover {
+        background-color: #218838;
+    }
+
+    .button-container a.register {
+        background-color: #17a2b8;
+    }
+
+    .button-container a.register:hover {
+        background-color: #138496;
+    }
+
+    .button-container a.search {
+        background-color: #dc3545;
+    }
+
+    .button-container a.search:hover {
+        background-color: #c82333;
+    }
+
+    .button-container a.submit {
+        background-color: #ffc107;
+    }
+
+    .button-container a.submit:hover {
+        background-color: #e0a800;
+    }
+
+    footer {
+        background: #007bff;
+        color: #fff;
+        padding: 10px;
+        position: fixed;
+        width: 100%;
+        bottom: 0;
+        text-align: center;
+    }
+</style>
+<html>
+<head>
+    <title>Book Hub </title>
+</head>
+<body>
+    <header>
+        <h1>Welcome to Book Hub</h1>
+    </header>
+    <div class="container">
+        <div class="hero">
+            <h2>Your Gateway to Amazing Books</h2>
+            <p>Explore, recommend, and enjoy your next great read with ease.</p>
+        </div>
+        <div class="button-container">
+            <a href="{% url 'search' %}" class="search">Search</a>
+            <a href="{% url 'view_recommendations' %}" class="view">View Recommendations</a>
+            <a href="{% url 'submit_recommendation' %}" class="submit">Submit Recommendation</a>
+            <a href="{% url 'login' %}" class="login">Login</a>
+            <a href="{% url 'register' %}" class="register">Register</a>
+        </div>
+    </div>
+    <footer>
+        &copy; 2024 Book Hub.
+    </footer>
+</body>
+</html>
